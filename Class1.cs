@@ -32,76 +32,51 @@
         /// after the method is complete.
         /// </summary>
         /// <param name="row">The row to draw over.</param>
+        /// <param name="col">The column to draw over, 4 is recommended for a more sleek design.</param>
         /// <param name="value">The string or text to write to the specified row.</param>
-        /// <param name="args">First argument (0-3) (error, warning, heading, important) - determines text style of the text, Second Argument (row) - to set the cursor after writing.</param>
-        public static void DrawOverLine(int row, string value, params int[] args)
+        /// <param name="args">First color represents text, second represents background</param>
+        public static void DrawOverLine(int row, int col, string value, params ConsoleColor[] args)
         {
             ClearLine(row);
-            Console.SetCursorPosition(4, row);
+            Console.SetCursorPosition(col, row);
             if (args.Length > 0)
             {
-                switch (args[0])
+                Console.ForegroundColor = args[0];
+                if (args.Length > 1)
                 {
-                    case 0:
-                        // Error style
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        break;
-                    case 1:
-                        // Warning style
-                        Console.ForegroundColor = ConsoleColor.Yellow;
-                        break;
-                    case 2:
-                        // Heading style
-                        Console.ForegroundColor = ConsoleColor.Black;
-                        Console.BackgroundColor = ConsoleColor.White;
-                        break;
-                    case 3:
-                        // Prompt style
-                        Console.ForegroundColor = ConsoleColor.Cyan;
-                        break;
+                    Console.BackgroundColor = args[1];
                 }
             }
             Console.Write(value);
             Console.ResetColor();
-            if (args.Length > 1) Console.SetCursorPosition(4, args[1]);
+            Console.SetCursorPosition(col, row+2);
         }
 
         /// <summary>   
         /// Allows the user to input something, clearing the input row after.
         /// </summary>
         /// <param name="row">The row to set the cursor position to before getting user input.</param>
-        /// <param name="args">One possible argument, the position counting from the left to set the cursor to before getting user input.</param>
+        /// <param name="col">The column to set the cursor position to before getting user input, 4 is recommended for a more sleek design.</param>
         /// <returns>The user input.</returns>
-        public static string ReadLineThenClear(int row, params int[] args)
+        public static string ReadLineThenClear(int row, int col)
         {
-            if (args.Length > 0) Console.SetCursorPosition(args[0], row);
-            else Console.SetCursorPosition(4, row);
+            Console.SetCursorPosition(col, row);
             string? input = Console.ReadLine();
             ClearLine(row);
             return input!;
         }
 
         /// <summary>
-        /// Similar to DrawOverLine, draws the specified text to column 32 - specifically for statistics display.
-        /// </summary>
-        /// <param name="row">The row to draw the statistic to.</param>
-        /// <param name="value">The string or statistic to write.</param>
-        public static void DrawStatistics(int row, string value)
-        {
-            Console.SetCursorPosition(32, row);
-            Console.Write(value);
-        }
-
-        /// <summary>
         /// Displays a notification with styling based on the severity of the notification.
         /// </summary>
-        /// <param name="severity">"update", "warning" or "debug", otherwise the style with be error.</param>
+        /// <param name="row">The row to display the message or notification from.</param>
+        /// <param name="col">The column to display the message or notification from, 4 is recommended for a more sleek design.</param>
+        /// <param name="severity">"update", "warning" or "debug", other values will default to error.</param>
         /// <param name="message">The message or notification to write.</param>
-        /// <param name="row">The row to display the message or notification in.</param>
-        public static void DrawNotification(string severity, string message, int row)
+        public static void DrawNotification(int row, int col, string severity, string message)
         {
             ClearLine(row);
-            Console.SetCursorPosition(4, row);
+            Console.SetCursorPosition(col, row);
             if (severity == "update")
             {
                 Console.ForegroundColor = ConsoleColor.Cyan;

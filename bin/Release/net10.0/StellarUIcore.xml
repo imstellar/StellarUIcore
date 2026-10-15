@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>StellarUIcore</name>
+    </assembly>
+    <members>
+        <member name="T:StellarUIcore.UI">
+            <summary>
+            Custom-built codebase which stores user interface methods used within any program utilising console output.
+            StellarUIcore remains the property of Enrikas Lukosevicius and is maintained for the purposes of easier development with console-based applications.
+            </summary>
+        </member>
+        <member name="M:StellarUIcore.UI.Initialise">
+            <summary>
+            Mut be implemented by the project the class is referenced within.
+            Displays or restores static elements such as labels, headings or static elements based on the program stage.
+            Should be used when starting the program loop or after clearing the console completely.
+            </summary>
+        </member>
+        <member name="M:StellarUIcore.UI.ClearLine(System.Int32[])">
+            <summary>
+            Clears any lines specified in the parameters.
+            </summary>
+            <param name="lines">The rows to clear</param>
+        </member>
+        <member name="M:StellarUIcore.UI.DrawOverLine(System.Int32,System.Int32,System.String,System.ConsoleColor[])">
+            <summary>
+            Draws text over existing text in a specific line with optional styling and cursor placement 
+            after the method is complete.
+            </summary>
+            <param name="row">The row to draw over.</param>
+            <param name="col">The column to draw over, 4 is recommended for a more sleek design.</param>
+            <param name="value">The string or text to write to the specified row.</param>
+            <param name="args">First color represents text, second represents background</param>
+        </member>
+        <member name="M:StellarUIcore.UI.ReadLineThenClear(System.Int32,System.Int32)">
+            <summary>   
+            Allows the user to input something, clearing the input row after.
+            </summary>
+            <param name="row">The row to set the cursor position to before getting user input.</param>
+            <param name="col">The column to set the cursor position to before getting user input, 4 is recommended for a more sleek design.</param>
+            <returns>The user input.</returns>
+        </member>
+        <member name="M:StellarUIcore.UI.DrawNotification(System.Int32,System.Int32,System.String,System.String)">
+            <summary>
+            Displays a notification with styling based on the severity of the notification.
+            </summary>
+            <param name="row">The row to display the message or notification from.</param>
+            <param name="col">The column to display the message or notification from, 4 is recommended for a more sleek design.</param>
+            <param name="severity">"update", "warning" or "debug", other values will default to error.</param>
+            <param name="message">The message or notification to write.</param>
+        </member>
+    </members>
+</doc>
