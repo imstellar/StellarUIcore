@@ -10,13 +10,6 @@
             StellarUIcore remains the property of Enrikas Lukosevicius and is maintained for the purposes of easier development with console-based applications.
             </summary>
         </member>
-        <member name="M:StellarUIcore.UI.Initialise">
-            <summary>
-            Mut be implemented by the project the class is referenced within.
-            Displays or restores static elements such as labels, headings or static elements based on the program stage.
-            Should be used when starting the program loop or after clearing the console completely.
-            </summary>
-        </member>
         <member name="M:StellarUIcore.UI.ClearLine(System.Int32[])">
             <summary>
             Clears any lines specified in the parameters.

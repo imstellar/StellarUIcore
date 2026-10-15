@@ -4,16 +4,8 @@
     /// Custom-built codebase which stores user interface methods used within any program utilising console output.
     /// StellarUIcore remains the property of Enrikas Lukosevicius and is maintained for the purposes of easier development with console-based applications.
     /// </summary>
-    public abstract class UI
+    public static class UI
     {
-
-        /// <summary>
-        /// Mut be implemented by the project the class is referenced within.
-        /// Displays or restores static elements such as labels, headings or static elements based on the program stage.
-        /// Should be used when starting the program loop or after clearing the console completely.
-        /// </summary>
-        public abstract void Initialise();
-
         /// <summary>
         /// Clears any lines specified in the parameters.
         /// </summary>
